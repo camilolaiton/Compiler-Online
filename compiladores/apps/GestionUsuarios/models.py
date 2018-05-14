@@ -26,7 +26,7 @@ class Usuario(models.Model):
     apellido2 = models.CharField(max_length=35)
     edad = models.CharField(max_length=4)
     ciudad = models.CharField(max_length=35)
-    email = models.CharField(max_length=35)
+    email = models.EmailField(max_length=35)
     telefono = models.CharField(max_length=35)
     idpais = models.ForeignKey(Pais, null=False, blank=False, on_delete=models.CASCADE)
     idlenguaje = models.ForeignKey(Lenguaje, null=False, blank=False, on_delete=models.CASCADE)
@@ -43,9 +43,9 @@ class Usuario(models.Model):
 
 class Codigo(models.Model):
 
-    codigo = models.CharField(max_length=3000)
+    codigo = models.TextField()
     cantidadEjecuciones = models.PositiveSmallIntegerField()
-    idUsuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    idUsuario = models.OneToOneField(Usuario, null=False, blank=False, on_delete=models.CASCADE)
     FechaCreacion = models.DateTimeField(auto_now_add=True)
 
 

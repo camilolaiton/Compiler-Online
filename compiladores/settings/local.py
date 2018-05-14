@@ -58,3 +58,4 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR.child('static')]
