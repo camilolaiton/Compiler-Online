@@ -26,7 +26,10 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
-    'apps.GestionUsuarios',
+    'apps.Usuario',
+    'apps.codigo',
+    'apps.lenguaje',
+    'apps.pais',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
