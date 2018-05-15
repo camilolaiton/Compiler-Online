@@ -1,15 +1,9 @@
 {% extends 'base/base.html' %}
-
+{% load staticfiles %}
 {% block title %}Gestion Usuarios{% endblock %}
 
-{% block header %}
-<p>bloque header de Gestion Usuarios</p>
-{% endblock %}
-
 {% block content %}
-<p>bloque contenido de Gestion Usuarios</p>
-{% endblock %}
-
-{% block footer %}
-<p>Bloque footer de Gestion Usuarios</p>
+    <h1>Gestion Usuarios</h1>
+    <p>Este es el contenido de Gestion Usuarios</p>
+    <img class="img-responsive" src="{% static 'img/bootstrap.png' %}" alt="imagen de un computador">
 {% endblock %}
