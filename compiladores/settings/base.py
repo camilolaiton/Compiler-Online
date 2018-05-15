@@ -1,7 +1,7 @@
 from unipath import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).ancestor(3)
+BASE_DIR = Path(__file__).ancestor(2)
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,7 +46,7 @@ ROOT_URLCONF = 'compiladores.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.child('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,5 +73,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-TEMPLATE_DIRS = [BASE_DIR.child('templates')]

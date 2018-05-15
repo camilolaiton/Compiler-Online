@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    {% block extrahead %}
+    <!-- bloque de los css -->
+    {% endblock %}
+
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    {% block header %}
+    <!-- Bloque del header -->
+    {% endblock %}
+
+    {% block content %}
+    <!-- Bloque del contenido de las paginas -->
+    {% endblock %}
+
+    {% block footer %}
+    <!-- Bloque del footer -->
+    {% endblock %}
+
+    {% block extrajs %}
+    <!-- bloque de los js -->
+    {% endblock %}
+</body>
+</html>
