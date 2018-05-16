@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from apps.Usuario.forms import UsuarioForm
 # Create your views here.
 
-def index(request):
-    return render(request, 'Usuario/index.html')
+def login(request):
+    return render(request, 'Usuario/login.html')
 
 def usuario_view(request):
 
@@ -14,7 +14,7 @@ def usuario_view(request):
         if form.is_valid():
             form.save()
 
-        return redirect('index')
+        return redirect('login')
 
     else:
         form = UsuarioForm()
