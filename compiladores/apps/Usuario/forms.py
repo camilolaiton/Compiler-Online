@@ -1,5 +1,6 @@
 from django import forms
 from apps.Usuario.models import Usuario
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 class UsuarioForm(forms.ModelForm):
 
@@ -16,8 +17,8 @@ class UsuarioForm(forms.ModelForm):
             'email',
             'password',
             'telefono',
-            'idpais',
-            'idlenguaje',
+            'pais',
+            'lenguaje',
         ]
 
         labels = {
@@ -30,8 +31,8 @@ class UsuarioForm(forms.ModelForm):
             'email': 'Email',
             'password': 'Contraseña',
             'telefono': 'Telefono',
-            'idpais': 'Pais',
-            'idlenguaje': 'Lenguaje',
+            'pais':'Pais',
+            'lenguaje':'Lenguaje',
         }
 
         widgets = {
@@ -44,6 +45,7 @@ class UsuarioForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'password': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
-            'idpais': forms.Select(attrs={'class':'form-control'}),
-            'idlenguaje': forms.Select(attrs={'class':'form-control'}),
+            'pais': forms.TextInput(attrs={'class': 'form-control'}),
+            'pais': forms.Select(attrs={'class': 'form-control'}),
+            'lenguaje': forms.Select(attrs={'class': 'form-control'}),
         }
