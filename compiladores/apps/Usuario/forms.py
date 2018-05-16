@@ -1,7 +1,7 @@
 from django import forms
 from apps.Usuario.models import Usuario
 
-class GestionUsuariosForm(forms.ModelForm):
+class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
@@ -14,7 +14,7 @@ class GestionUsuariosForm(forms.ModelForm):
             'edad',
             'ciudad',
             'email',
-            'contraseña',
+            'password',
             'telefono',
             'idpais',
             'idlenguaje',
@@ -28,7 +28,7 @@ class GestionUsuariosForm(forms.ModelForm):
             'edad': 'Edad',
             'ciudad': 'Ciudad',
             'email': 'Email',
-            'contraseña': 'Contraseña',
+            'password': 'Contraseña',
             'telefono': 'Telefono',
             'idpais': 'Pais',
             'idlenguaje': 'Lenguaje',
@@ -42,7 +42,7 @@ class GestionUsuariosForm(forms.ModelForm):
             'edad': forms.TextInput(attrs={'class':'form-control'}),
             'ciudad': forms.TextInput(attrs={'class':'form-control'}),
             'email': forms.EmailInput(attrs={'class':'form-control'}),
-            'contraseña': forms.PasswordInput(attrs={'class':'form-control'}),
+            'password': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
             'idpais': forms.Select(attrs={'class':'form-control'}),
             'idlenguaje': forms.Select(attrs={'class':'form-control'}),

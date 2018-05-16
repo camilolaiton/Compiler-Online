@@ -1,6 +1,7 @@
-from apps.Usuario.views import index
-from django.urls import path, include
+from apps.Usuario.views import usuario_view, index
+from django.urls import path
 
 urlpatterns = [
-    path('', index),
+    path('new', usuario_view, name = 'Usuario_crear'),
+    path('', index, name='index'),
 ]

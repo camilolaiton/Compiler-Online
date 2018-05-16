@@ -1,18 +1,21 @@
 from django.db import models
 from apps.pais.models import Pais
 from apps.lenguaje.models import Lenguaje
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 # Create your models here.
 
-class Usuario(models.Model):
 
+class Usuario(models.Model, AbstractBaseUser, PermissionsMixin):
+
+    username = models.CharField(max_length=50, unique=True)
     nombre1 = models.CharField(max_length=35)
     nombre2 = models.CharField(max_length=35)
     apellido1 = models.CharField(max_length=35)
     apellido2 = models.CharField(max_length=35)
     edad = models.CharField(max_length=4)
     ciudad = models.CharField(max_length=35)
-    email = models.EmailField(max_length=35)
+    email = models.EmailField(max_length=35, unique=True)
     telefono = models.CharField(max_length=35)
     password = models.CharField(max_length=20)
     idpais = models.ForeignKey(Pais, null=False, blank=False, on_delete=models.CASCADE)

@@ -1,4 +1,5 @@
 from .base import *
+from django.urls import reverse_lazy
 
 """
 Django settings for compiladores project.

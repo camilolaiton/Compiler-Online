@@ -1,4 +1,18 @@
 {% extends 'base/base.html' %}
-{% load staticfiles %}
 
 {% block title %}Registrar Usuario{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block header %}
+<h2>Rellene los campos: </h2>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}

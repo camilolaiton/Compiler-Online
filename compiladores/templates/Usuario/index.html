@@ -1,9 +1,45 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
-{% block title %}Usuario{% endblock %}
+
+{% block title %}
+Login Usuario
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
 
 {% block content %}
-    <h1>Usuario</h1>
-    <p>Este es el contenido de Gestion Usuarios</p>
-    <img class="img-responsive" src="{% static 'img/bootstrap.png' %}" alt="imagen de un computador">
+<div class="page-header">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" >
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Direccion de correo</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email">
+                  <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos su direccion de correo.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" >
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" >
+                <div class="form-group">
+                    <a href="#">Olvidé mi contraseña</a><br>
+                    <input class="btn btn-success" type="submit" value="Ingresar">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
