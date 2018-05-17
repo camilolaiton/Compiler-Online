@@ -6,6 +6,13 @@ Login Usuario
 {% endblock %}
 
 {% block navbar %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3" >
+        <div class="form-group">
+            <h1>Login</h1>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -37,6 +44,18 @@ Login Usuario
                     <a href="#">Olvidé mi contraseña</a><br>
                     <input class="btn btn-success" type="submit" value="Ingresar">
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <p><strong>-- OR --</strong></p>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+                    <p><strong>-- OR --</strong></p>
+                    <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+                </div>
+
             </div>
         </div>
     </form>

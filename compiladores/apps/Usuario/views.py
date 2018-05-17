@@ -1,34 +1,32 @@
 from django.shortcuts import render, redirect
-from apps.Usuario.forms import UsuarioForm
+from apps.Usuario.forms import LoginForm, RegisterForm
+from django.contrib.auth.views import FormView, logout
+from django.views.generic import CreateView, UpdateView
+from django.contrib.auth import authenticate, login as auth_login
+
 # Create your views here.
 
-def login(request):
-    return render(request, 'Usuario/login.html')
+class LoginView(FormView):
+    form_class = LoginForm
+    success_url = '/'
+    template_name = "Usuario/login.html"
 
-def usuario_view(request):
+    def form_valid(self, form):
+        request = self.request
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(request, username=email, password=password)
 
-    if request.method == 'POST':
+        if user is not None:
+            auth_login(request, user)
+            return redirect("/register")
+        return super(LoginView, self).form_invalid(form)
 
-        form = UsuarioForm(request.POST)
+class RegisterView(CreateView):
+    form_class = RegisterForm
+    template_name = 'Usuario/registrar.html'
+    success_url = '/login'
 
-        if form.is_valid():
-            form.save()
-
-        return redirect('login')
-
-    else:
-        form = UsuarioForm()
-
-    return render(request, 'Usuario/Usuario_form.html', {'form':form})
-"""
-def auth_view(request):
-    email = request.POST.get('email','')
-    password = request.POST.get('password','')
-    usuario = auth.authenticate(email=email, password=password)
-
-    if usuario is not None:
-        auth.login(request, usuario)
-        return render(request, 'Usuario/Usuario_form.html')#Cambiar por la pagina principal
-    else:
-        return render(request, 'Usuario/login.html')
-"""
+def LogOut(request):
+    logout(request)
+    return redirect("/login")
