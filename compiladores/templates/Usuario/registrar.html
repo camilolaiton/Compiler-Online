@@ -9,6 +9,9 @@ Registrar Usuario
 {% endblock %}
 
 {% block content %}
+
+<p>Hello {{ user.username }}!</p>
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
