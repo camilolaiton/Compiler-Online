@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Pagina Principal
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron"></div>
+
+<div style="float: left; width: 550px;" class="jumbotron; container;">
+    <div class="bs-docs-section">
+        <div class="form-group">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">IR</button>
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">RUN</button>
+
+             </form>
+            <label for="exampleTextarea">Example textarea</label>
+            <textarea class="form-control" id="exampleTextarea" rows="15"></textarea>
+
+            <div class="progress">
+                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div style="float: right; width: 550px;">
+    <br><br>
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="15"></textarea>
+
+</div>
+{% endblock %}

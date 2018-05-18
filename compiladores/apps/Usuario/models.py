@@ -1,6 +1,4 @@
 from django.db import models
-from apps.pais.models import Pais
-from apps.lenguaje.models import Lenguaje
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
@@ -8,11 +6,16 @@ from django.contrib.auth.models import (
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, nombre1, nombre2, apellido1, apellido2, edad, ciudad, telefono, pais, lenguaje, password=None, is_active=True , is_staff=False, is_admin=False):
-        if not email:
-            raise ValueError('Los usuarios deben tener una direccion de correo')
-        if not password:
-            raise ValueError('Los usuarios deben tener una password')
+    def create_user(self, username, email, password=None, is_active=True , is_staff=False, is_admin=False):
+
+        if not username:
+            raise ValueError('Los usuarios deben tener una cuenta de usuario')
+        #if not email:
+         #   raise ValueError('Los usuarios deben tener una direccion de correo')
+
+        """nombre1, nombre2, apellido1, apellido2, edad, ciudad, telefono, pais, lenguaje,"""
+
+        """
         if not nombre1:
             raise ValueError('Los usuarios deben tener un primer nombre')
         if not nombre2:
@@ -27,18 +30,24 @@ class UserManager(BaseUserManager):
             raise ValueError('Los usuarios deben tener una ciudad')
         if not telefono:
             raise ValueError('Los usuarios deben tener un telefono')
+            
+        nombre1=nombre1,
+        nombre2=nombre2,
+        apellido1=apellido1,
+        apellido2=apellido2,
+        edad=edad,
+        ciudad=ciudad,
+        telefono=telefono,
+        pais=pais,
+        lenguaje=lenguaje
+            
+        
+
+        """
 
         usuario_obj = self.model(
-            email=self.normalize_email(email),
-            nombre1=nombre1,
-            nombre2=nombre2,
-            apellido1=apellido1,
-            apellido2=apellido2,
-            edad=edad,
-            ciudad=ciudad,
-            telefono=telefono,
-            pais=pais,
-            lenguaje=lenguaje
+            username=username,
+            email=self.normalize_email(email)
         )
 
         usuario_obj.set_password(password)#Change user password
@@ -48,36 +57,20 @@ class UserManager(BaseUserManager):
         usuario_obj.save(using=self._db)
         return usuario_obj
 
-    def create_staffuser(self, email, nombre1, nombre2, apellido1, apellido2, edad, ciudad, telefono, pais, lenguaje, password=None):
+    def create_staffuser(self, username, email, password=None):
         usuario = self.create_user(
+            username,
             email,
-            nombre1,
-            nombre2,
-            apellido1,
-            apellido2,
-            edad,
-            ciudad,
-            telefono,
-            pais,
-            lenguaje,
             password=password,
             is_staff=True
         )
         return usuario
 
-    def create_superuser(self, email, nombre1, nombre2, apellido1, apellido2, edad, ciudad, telefono, password=None):
+    def create_superuser(self, username, email, password=None):
 
         usuario = self.create_user(
+            username,
             email,
-            nombre1,
-            nombre2,
-            apellido1,
-            apellido2,
-            edad,
-            ciudad,
-            telefono,
-            pais=None,
-            lenguaje=None,
             password=password,
             is_staff=True,
             is_admin=True
@@ -86,35 +79,26 @@ class UserManager(BaseUserManager):
 
 class Usuario(AbstractBaseUser):
 
-    nombre1 = models.CharField(max_length=35)
-    nombre2 = models.CharField(max_length=35)
-    apellido1 = models.CharField(max_length=35)
-    apellido2 = models.CharField(max_length=35)
-    edad = models.CharField(max_length=4)
-    ciudad = models.CharField(max_length=35)
-    telefono = models.CharField(max_length=35)
-    pais = models.ForeignKey(Pais, null=True, blank=False, on_delete=models.CASCADE)
-    lenguaje = models.ForeignKey(Lenguaje, null=True, blank=False, on_delete=models.CASCADE)
-
-    email = models.EmailField(max_length=50, unique=True)
+    username = models.CharField(max_length=40, unique=True)
+    email = models.EmailField(max_length=50)
     active = models.BooleanField(default=True) #can login
     staff = models.BooleanField(default=False) #staff user non superuser
     admin = models.BooleanField(default=False) #Superuser
 
-    USERNAME_FIELD = 'email'#username
+    USERNAME_FIELD = 'username'#username
     #Email and password are required by default
-    REQUIRED_FIELDS = ['nombre1', 'nombre2', 'apellido1', 'apellido2', 'edad', 'ciudad', 'telefono']
+    REQUIRED_FIELDS = [ 'email']
 
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return self.username
 
     def get_full_name(self):
-        return self.email
+        return self.username
 
     def get_short_name(self):
-        return self.email
+        return self.username
 
     def has_perm(self, perm, obj=None):
         return True
