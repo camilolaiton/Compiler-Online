@@ -1,5 +1,9 @@
 from django import forms
 from apps.Usuario.models import Usuario
+<<<<<<< HEAD
+=======
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+>>>>>>> 2c134556564fbfb5e50c9cc71f2d3503aae54c65
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='username')

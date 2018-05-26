@@ -3,4 +3,8 @@ psycopg2==2.7.4
 pytz==2018.4
 Unipath==1.1
 South==1.0.2
+<<<<<<< HEAD
+=======
+python-social-auth==0.3.6
+>>>>>>> 2c134556564fbfb5e50c9cc71f2d3503aae54c65
 social-auth-app-django==2.1.0
