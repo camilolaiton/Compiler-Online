@@ -1,14 +1,13 @@
 from django.db import models
-from apps.Usuario.models import Usuario
+from apps.PerfilUsuario.models import PerfilUsuario
 # Create your models here.
 
 class Codigo(models.Model):
 
-    codigo = models.TextField()
-    cantidadEjecuciones = models.PositiveSmallIntegerField()
-    idUsuario = models.OneToOneField(Usuario, null=False, blank=False, on_delete=models.CASCADE)
-    FechaCreacion = models.DateTimeField(auto_now_add=True)
-
+    filename = models.CharField(max_length=35)
+    docfile =  models.CharField(max_length=100)
+    cantidadEjecuciones = models.IntegerField(default=0)
+    perfil = models.ForeignKey(PerfilUsuario, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.codigo
+        return self.filename

@@ -1,5 +1,4 @@
 from .base import *
-from django.urls import reverse_lazy
 
 """
 Django settings for compiladores project.
@@ -61,15 +60,43 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='952278025126-vm7sd2ud0jmqafehbs7jvscn49qua1r2.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'OT_BTrCIk2A6kkrTvwOaCDdy'
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'apps.Usuario.pipeline.create_profile'
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='31658353096-1i5lqtj9u22vnqnn24pb7pr1qsqc4aer.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'UQCF3RB-DIfO0fKc5UIW6B-H'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_GOOGLE_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
 
 SOCIAL_AUTH_GITHUB_KEY = '998d04fbf3c10b8236f5'
 SOCIAL_AUTH_GITHUB_SECRET = '925a13611dc63355840581cbca94704c85d10b4a'
+SOCIAL_AUTH_GITHUB_SCOPE = ['email']
+SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = '420162828456789'
+SOCIAL_AUTH_FACEBOOK_SECRET = '8b6646720b28222383dc402194bc820e'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
 
 # CLIENTE DE OAUTH GOOGLE
-# ID de cliente : 952278025126-vm7sd2ud0jmqafehbs7jvscn49qua1r2.apps.googleusercontent.com
-# Secreto de cliente: OT_BTrCIk2A6kkrTvwOaCDdy
+# ID de cliente : 31658353096-1i5lqtj9u22vnqnn24pb7pr1qsqc4aer.apps.googleusercontent.com
+# Secreto de cliente: UQCF3RB-DIfO0fKc5UIW6B-H
 
 # CLIENTE DE OAUTH GITHUB
 # ID de cliente : 998d04fbf3c10b8236f5
@@ -79,6 +106,15 @@ SOCIAL_AUTH_GITHUB_SECRET = '925a13611dc63355840581cbca94704c85d10b4a'
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [BASE_DIR.child('static')]
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/register' # Here goes the home where we are gonna work on
+LOGIN_REDIRECT_URL = '/principal'
+# Here goes the home where we are gonna work on
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'noreply.compiladores@gmail.com'
+EMAIL_HOST_PASSWORD = 'administrador9798'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Codigo
+{% endblock %}
+
+{% block navbar %}
+<!-- Responsive navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!--  Display three horizontal lines when navbar collapsed. -->
+          <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">{{ user.username }}</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a class="dropdown-item" href="../principal">Inicio</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Configuracion<span class="caret"></span></a>
+              <div class="dropdown-menu">
+                {% if  user.perfil  %}
+                  <a class="dropdown-item" href="../actualizar/{{ user.perfil.id }}/">Actualizar informacion</a>
+                  {% else %}
+                  <a class="dropdown-item" href="../Perfil/crearPerfil">Crear Perfil</a>
+                  {% endif %}
+                <div class="dropdown-divider"></div>
+              </div>
+            </li>
+            <li><a class="dropdown-item" href="../eliminar/{{ user.id }}">Eliminar cuenta</a></li>
+            <li><a href="../logout">Salir</a></li>
+            <li><a href="../estadisticas">Estadisticas</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+{% if user.perfil %}
+    <div class="jumbotron">
+        <h2 class="display-3"><b>Nuevo codigo</b></h2><br>
+        <form method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+
+            <p><label for="{{ form.perfil.id_for_label }}">Usuario:</label>
+                <input type="text" id="{{ form.perfil.id_for_label }}" name="perfil" maxlength="35" value="{{user.perfil}}" required></p>
+
+            <p><label for="{{ form.cantidadEjecuciones.id_for_label }}">Cantidad ejecuciones:</label>
+                <input type="text" id="{{ form.cantidadEjecuciones.id_for_label }}" name="cantidadEjecuciones" maxlength="35" value="0" required></p>
+
+            <p><label for="{{ form.filename.id_for_label }}">Nombre del archivo:</label>
+                {{ form.filename }}</p>
+            <p><label for="{{ form.docfile.id_for_label }}">Selecciona un archivo:</label>
+                {{ form.docfile }}</p>
+
+            <button class="btn btn-success" type="submit">
+                    <i class="fa fa-share-square"></i>&nbsp;Guardar
+            </button>
+        </form>
+    </div>
+{% else %}
+    <div class="jumbotron">
+        <h2 class="display-3">Por favor, actualice su perfil primero </h2>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Estadisticas de los usuarios
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+    var endpoint = 'Chart/data/'
+    var defaultData = []
+    var labels = []
+    $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function(data){
+            swal("Bienvenido!", "Estadisticas de los usuarios", "success")
+            labels = data.UsuariosXLenguaje.labels
+            defaultData = data.UsuariosXLenguaje.defaultData
+
+            labelsPais = data.UsuariosXPais.labels
+            defaultDataPais = data.UsuariosXPais.defaultData
+
+            setChart();
+        },
+        error: function(error_data){
+            console.log("error")
+            console.log(error_data)
+        }
+    })
+
+    function setChart(){
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        var ctx3 = document.getElementById("myChart3").getContext('2d');
+        var ctx4 = document.getElementById("myChart4").getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# de Usuarios',
+                    data: defaultData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# de Usuarios',
+                    data: defaultData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var myChart3 = new Chart(ctx3, {
+            type: 'polarArea',
+            data: {
+                labels: labelsPais,
+                datasets: [{
+                    label: '# de Usuarios',
+                    data: defaultDataPais,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var myChart4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: labelsPais,
+                datasets: [{
+                    label: '# de Usuarios',
+                    data: defaultDataPais,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}
+
+{% block navbar %}
+<!-- Responsive navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!--  Display three horizontal lines when navbar collapsed. -->
+          <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">{{ user.username }}</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a class="dropdown-item" href="principal">Inicio</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Configuracion<span class="caret"></span></a>
+              <div class="dropdown-menu">
+                {% if  user.perfil  %}
+                  <a class="dropdown-item" href="actualizar/{{ user.perfil.id }}/">Actualizar informacion</a>
+                  {% else %}
+                  <a class="dropdown-item" href="Perfil/crearPerfil">Crear Perfil</a>
+                  {% endif %}
+                <div class="dropdown-divider"></div>
+              </div>
+            </li>
+            <li><a href="logout">Salir</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<div class="container">
+    <h3 class="display-3 text-center"><b>Usuarios por lenguaje de preferencia</b></h3>
+    <div class="col-sm-6">
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+
+    <div class="col-sm-6">
+        <canvas id="myChart2" width="200" height="200"></canvas>
+    </div>
+</div>
+
+<div class="container">
+    <h3 class="display-3 text-center"><b>Usuarios por pais</b></h3>
+
+    <div class="col-sm-6">
+        <canvas id="myChart3" width="200" height="200"></canvas>
+    </div>
+
+    <div class="col-sm-6">
+        <canvas id="myChart4" width="200" height="200"></canvas>
+    </div>
+</div>
+
+{% endblock %}

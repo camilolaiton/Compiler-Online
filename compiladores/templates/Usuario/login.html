@@ -16,15 +16,26 @@ Login Usuario
 {% endblock %}
 
 {% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+      <script>
+        swal('{{ message }}', "Puede recuperar su contraseña en el link de abajo", "error");
+    </script>
+    {% endfor %}
+{% endif %}
+
 <div class="page-header">
     <form method="post">
         {% csrf_token %}
+
         <div class="row">
             <div class="col-md-6 col-md-offset-3" >
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Direccion de correo</label>
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email">
-                  <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos su direccion de correo.</small>
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                  <label for="userExample">Cuenta de usuario</label>
+                  <input type="username" name="username" class="form-control" id="user" aria-describedby="username" placeholder="Ingrese nombre de usuario">
+                  <small id="userFieldMessage" class="form-text text-muted">Nosotros nunca compartiremos su informacion personal.</small>
                 </div>
             </div>
         </div>
@@ -32,6 +43,7 @@ Login Usuario
         <div class="row">
             <div class="col-md-6 col-md-offset-3" >
                 <div class="form-group">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
                   <label for="exampleInputPassword1">Contraseña</label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
                 </div>
@@ -41,22 +53,34 @@ Login Usuario
         <div class="row">
             <div class="col-md-6 col-md-offset-3" >
                 <div class="form-group">
-                    <a href="#">Olvidé mi contraseña</a><br>
-                    <input class="btn btn-success" type="submit" value="Ingresar">
+                    <a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a><br>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="form-group">
-                    <p><strong>-- OR --</strong></p>
-                    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-                    <p><strong>-- OR --</strong></p>
-                    <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-                </div>
+        <div class="row col-md-offset-3">
+            <button class="btn btn-success" type="submit">
+                <i class="fa fa-key"></i> Ingresar
+            </button>
+        </div>
 
+        <div class="row col-md-offset-3">
+            <br>
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            <a href="registrar"><b>Registrar</b></a>
+        </div>
+
+        <div class="row1 omb_row-sm-offset-3 omb_socialButtons">
+            <div class="col-xs-4 col-sm-2 col-md-offset-4">
+                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-lg btn-block omb_btn-google" style="color:white; background:red;"><i class="fa fa-google-plus visible-xs"></i><span class="hidden-xs">Google+</span></a>
             </div>
+
+            <!--
+            <div class="col-xs-4 col-sm-2">
+                <a href="{% url 'social:begin' 'github' %}" class="btn btn-lg btn-block omb_btn-github" style="color:white; background:black;"><i class="fa fa-github visible-xs"></i><span class="hidden-xs">Github</span></a>
+            </div>
+            -->
+
         </div>
     </form>
 </div>

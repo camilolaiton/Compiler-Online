@@ -9,9 +9,30 @@ Registrar Usuario
 {% endblock %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+
+<div class="jumbotron">
+    <h2 class="display-3"><b>Registrar usuario</b></h2><br>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <!-- {{ form.as_p }}-->
+
+        <p><label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+        {{ form.username }}</p>
+
+        <p><label for="{{ form.email.id_for_label }}">Email:</label>
+        {{ form.email }}</p>
+
+        <p><label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+        {{ form.password1 }}</p>
+
+        <p><label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
+        {{ form.password2 }}</p>
+
+        <button class="btn btn-success" type="submit">
+                <i class="fa fa-share-square"></i>&nbsp;Guardar
+        </button>
+
+    </form>
+</div>
 {% endblock %}

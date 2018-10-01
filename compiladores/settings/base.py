@@ -24,6 +24,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'social_django',
     'social_core',
+    'rest_framework',
 )
 
 LOCAL_APPS = (
@@ -31,6 +32,7 @@ LOCAL_APPS = (
     'apps.codigo',
     'apps.lenguaje',
     'apps.pais',
+    'apps.PerfilUsuario'
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -58,6 +60,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',  # <- Here

@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Crear Perfil
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h2 class="display-3">Crear perfil</h2>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        <p><label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+        <input type="text" id="{{ form.username.id_for_label }}" name="username" maxlength="35" value="{{user.username}}" required></p>
+
+        <p><label for="id_nombre1">Primer nombre:</label>
+        {{ form.nombre1 }}</p>
+
+        <p><label for="id_nombre2">Segundo nombre:</label>
+        {{ form.nombre2 }}</p>
+
+        <p><label for="id_apellido1">Primer apellido:</label>
+        {{ form.apellido1 }}</p>
+
+        <p><label for="id_apellido2">Segundo apellido:</label>
+        {{ form.apellido2 }}</p>
+
+        <p><label for="id_edad">Edad:</label>
+        {{ form.edad }}</p>
+
+        <p><label for="id_ciudad">Ciudad:</label>
+        {{ form.ciudad }}</p>
+
+        <p><label for=" {{form.telefono.id_for_label }}">Telefono:</label>
+        {{ form.telefono }}</p>
+
+        <p><label for=" {{form.pais.id_for_label }}">Pais:</label>
+        {{ form.pais }}</p>
+
+        <p><label for=" {{form.lenguaje.id_for_label }}">Lenguaje:</label>
+        {{ form.lenguaje }}</p>
+
+        <button class="btn btn-success" type="submit">
+                <i class="fa fa-share-square"></i>&nbsp;Guardar
+        </button>
+    </form>
+</div>
+{% endblock %}
