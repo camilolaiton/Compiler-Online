@@ -73,37 +73,27 @@ SOCIAL_AUTH_PIPELINE = (
     'apps.Usuario.pipeline.create_profile'
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='31658353096-1i5lqtj9u22vnqnn24pb7pr1qsqc4aer.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'UQCF3RB-DIfO0fKc5UIW6B-H'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 SOCIAL_AUTH_GOOGLE_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-SOCIAL_AUTH_GITHUB_KEY = '998d04fbf3c10b8236f5'
-SOCIAL_AUTH_GITHUB_SECRET = '925a13611dc63355840581cbca94704c85d10b4a'
+SOCIAL_AUTH_GITHUB_KEY = ''
+SOCIAL_AUTH_GITHUB_SECRET = ''
 SOCIAL_AUTH_GITHUB_SCOPE = ['email']
 SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-SOCIAL_AUTH_FACEBOOK_KEY = '420162828456789'
-SOCIAL_AUTH_FACEBOOK_SECRET = '8b6646720b28222383dc402194bc820e'
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-# CLIENTE DE OAUTH GOOGLE
-# ID de cliente : 31658353096-1i5lqtj9u22vnqnn24pb7pr1qsqc4aer.apps.googleusercontent.com
-# Secreto de cliente: UQCF3RB-DIfO0fKc5UIW6B-H
-
-# CLIENTE DE OAUTH GITHUB
-# ID de cliente : 998d04fbf3c10b8236f5
-# Secreto de cliente: 925a13611dc63355840581cbca94704c85d10b4a
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -115,6 +105,6 @@ LOGIN_REDIRECT_URL = '/principal'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'noreply.compiladores@gmail.com'
-EMAIL_HOST_PASSWORD = 'administrador9798'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
