@@ -4,5 +4,5 @@ pytz==2018.4
 Unipath==1.1
 South==1.0.2
 social-auth-app-django==2.1.0
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 ply==3.11
