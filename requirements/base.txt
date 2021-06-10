@@ -1,4 +1,4 @@
-Django==2.0.12
+Django==2.2.24
 psycopg2==2.7.4
 pytz==2018.4
 Unipath==1.1
